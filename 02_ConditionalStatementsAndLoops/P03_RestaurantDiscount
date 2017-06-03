@@ -1,0 +1,59 @@
+namespace P03_RestaurantDiscount
+{
+	using System;
+
+	public class P03_RestaurantDiscount
+	{
+		public static void Main()
+		{
+			var groupSize = int.Parse(Console.ReadLine());
+			var package = Console.ReadLine();
+			var hallName = String.Empty;
+			var price = 0.0;
+
+			if (groupSize <= 120)
+			{
+				if (groupSize <= 50)
+				{
+					hallName = "Small Hall";
+					price = 2500;
+				}
+				else if (groupSize <= 100)
+				{
+					hallName = "Terrace";
+					price = 5000;
+				}
+				else
+				{
+					hallName = "Great Hall";
+					price = 7500;
+				}
+
+				switch (package)
+				{
+					case "Normal":
+						price += 500;
+						price *= 0.95;
+						break;
+					case "Gold":
+						price += 750;
+						price *= 0.9;
+						break;
+					case "Platinum":
+						price += 1000;
+						price *= 0.85;
+						break;
+				}
+
+				price /= groupSize;
+				
+				Console.WriteLine($"We can offer you the {hallName}\n" +
+					$"The price per person is {price:F2}$");
+			}
+			else
+			{
+				Console.WriteLine("We do not have an appropriate hall.");
+			}
+		}
+	}
+}
